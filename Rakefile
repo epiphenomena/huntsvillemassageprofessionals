@@ -6,6 +6,7 @@ task :default => :sync
 #  - storage db (*.sqlite*) is excluded so server data is never overwritten
 #  - config.php is excluded so server secrets (CRM password, SMTP_PASS) are kept
 #  - tools/, the source scans (*.jpeg) and the python venv are dev-only
+desc "Deploy to #{REMOTE} (keeps server config.php and the SQLite database)"
 task :sync do
     sh "rsync -avzzh --progress --delete --exclude .git --exclude Rakefile " \
        "--exclude tools --exclude .venv --exclude '*.jpeg' --exclude '*.sqlite*' " \
@@ -13,6 +14,7 @@ task :sync do
 end
 
 # Same as sync but a dry run — preview what would change without touching the server.
+desc "Preview what sync would change (dry run, no changes made)"
 task :dryrun do
     sh "rsync -avzzh --dry-run --delete --exclude .git --exclude Rakefile " \
        "--exclude tools --exclude .venv --exclude '*.jpeg' --exclude '*.sqlite*' " \
@@ -21,12 +23,14 @@ end
 
 # Push config.php explicitly (overwrites server config — secrets included).
 # Use on first deploy, or when you intend to update the server configuration.
+desc "Push config.php to the server (OVERWRITES remote config — needed on first deploy)"
 task :pushconfig do
     sh "rsync -avzh config.php #{REMOTE}/config.php"
 end
 
 # Pull a copy of the server database for local development/testing.
 # Backs up any existing local copy first; sync never pushes it back.
+desc "Pull the server database to storage/hmp.sqlite (backs up local copy first)"
 task :pulldb do
     db = "storage/hmp.sqlite"
     if File.exist?(db)
@@ -39,11 +43,13 @@ task :pulldb do
 end
 
 # Run the dev server locally (auto-creates storage/hmp.sqlite with demo data).
+desc "Run the local dev server at http://127.0.0.1:8000 (auto-seeds the database)"
 task :dev do
     sh "php -S 127.0.0.1:8000"
 end
 
 # Regenerate the branded .docx intake/consent forms (requires python-docx).
+desc "Regenerate the branded .docx intake/consent forms (requires python-docx)"
 task :forms do
     sh "python3 tools/generate_forms.py"
 end
