@@ -76,7 +76,7 @@ $therapists = hmp_therapists();
       <p class="muted">Each of our licensed therapists brings their own specialties and style. Explore their profiles and book directly.</p>
     </div>
     <div class="grid grid--4">
-      <?php foreach (array_slice($therapists, 0, 4) as $t): ?>
+      <?php foreach ($therapists as $t): ?>
         <a class="therapist-card reveal" href="/therapist.php?t=<?= e($t['slug']) ?>">
           <img class="therapist-card__photo" src="/assets/img/therapists/<?= e($t['slug']) ?>.svg" alt="<?= e($t['name']) ?>" loading="lazy">
           <div class="therapist-card__body">
@@ -87,7 +87,7 @@ $therapists = hmp_therapists();
         </a>
       <?php endforeach; ?>
     </div>
-    <p class="center" style="margin-top:2rem"><a class="btn" href="/therapists.php">Meet all <?= count($therapists) ?> therapists</a></p>
+    <p class="center" style="margin-top:2rem"><a class="btn" href="/therapists.php">View full therapist profiles</a></p>
   </div>
 </section>
 
