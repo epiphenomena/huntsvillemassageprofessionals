@@ -1,8 +1,2 @@
-# Block all web access to the database directory (Apache 2.4+ and 2.2).
-<IfModule mod_authz_core.c>
-  Require all denied
-</IfModule>
-<IfModule !mod_authz_core.c>
-  Order allow,deny
-  Deny from all
-</IfModule>
+# Block all web access to the database directory (Apache 2.4).
+Require all denied
