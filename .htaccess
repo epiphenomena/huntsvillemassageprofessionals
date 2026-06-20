@@ -1,0 +1,18 @@
+# Huntsville Massage Professionals — Apache config.
+# NOTE: This file is Apache-only. On nginx, translate these rules in your
+# server block (deny /storage, /includes, config.php; protect /crm).
+
+Options -Indexes
+DirectoryIndex index.php index.html
+
+# Never serve the database, source includes, or config over the web.
+<FilesMatch "\.(sqlite|sqlite-wal|sqlite-shm|db)$">
+  <IfModule mod_authz_core.c>Require all denied</IfModule>
+  <IfModule !mod_authz_core.c>Deny from all</IfModule>
+</FilesMatch>
+
+RedirectMatch 403 ^/storage/.*$
+RedirectMatch 403 ^/includes/.*$
+RedirectMatch 403 ^/config\.php$
+
+# Friendly error pages could be added here later.

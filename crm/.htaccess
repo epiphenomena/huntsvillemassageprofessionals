@@ -1,0 +1,15 @@
+# /crm is also protected in PHP (see bootstrap.php) so it works on any server.
+# On Apache you may ALSO enable native Basic Auth here for defense in depth:
+#
+#   AuthType Basic
+#   AuthName "Huntsville Massage CRM"
+#   AuthUserFile /absolute/path/to/.htpasswd   # create with: htpasswd -c .htpasswd admin
+#   Require valid-user
+#
+# Ensure the Authorization header reaches PHP under CGI/FastCGI:
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP:Authorization} .
+  RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1

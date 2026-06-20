@@ -1,0 +1,11 @@
+# Runtime SQLite database (auto-created on first request)
+storage/*.sqlite
+storage/*.sqlite-wal
+storage/*.sqlite-shm
+
+# Python virtualenv for DOCX generation
+.venv/
+
+# OS / editor cruft
+.DS_Store
+*.swp

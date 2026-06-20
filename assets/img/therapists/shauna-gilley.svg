@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500" role="img" aria-label="Portrait placeholder for Shauna Gilley">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#e0e9ea"/><stop offset="1" stop-color="#ffffff"/></linearGradient></defs>
+  <rect width="400" height="500" fill="url(#g)"/>
+  <circle cx="200" cy="205" r="92" fill="#3d6e72" opacity="0.12"/>
+  <text x="200" y="232" font-family="Georgia, serif" font-size="84" font-weight="600" fill="#3d6e72" text-anchor="middle">SG</text>
+  <path d="M90 500c0-66 49-118 110-118s110 52 110 118z" fill="#3d6e72" opacity="0.16"/>
+  <text x="200" y="470" font-family="Inter, sans-serif" font-size="20" fill="#3d6e72" text-anchor="middle" opacity="0.7">Shauna Gilley</text>
+</svg>
